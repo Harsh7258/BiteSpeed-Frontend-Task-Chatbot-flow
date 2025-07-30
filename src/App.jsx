@@ -1,9 +1,14 @@
-import './App.css'
+import {  Routes, Route } from "react-router-dom";
+import Home from './components/Home'
+import ChatBot from "./components/ChatBot";
 
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/chatbot" element={<ChatBot />} />
+    </Routes>
     </>
   )
 }

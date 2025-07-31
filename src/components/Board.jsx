@@ -27,7 +27,24 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
     setSelectedNode(node);
   };
 
-  const addMessageNode = () => { // add new message node 
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+  }, []);
+
+  const onDrop = useCallback((event) => {
+    // console.log(event)
+    event.preventDefault();
+
+    const type = event.dataTransfer.getData('application/reactflow');
+    if (!type) return;
+
+    const bounds = event.target.getBoundingClientRect();
+    const position = { // mouse position
+      x: event.clientX - bounds.left,
+      y: event.clientY - bounds.top,
+    };
+
     if(!nodeGenerators[type]){
       toast.error('No such type!!') // type error
       return;
@@ -37,15 +54,16 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
     // console.log(generator);
     const res = generator();
 
-    const newNode = { // one node { node }
+    const newNode = {
       id: `${+new Date()}`,
-      ...res, // node custom generator
-      position: { x: Math.random() * 250, y: Math.random() * 250 
-
-      },
+      ...res,
+      position,
     };
-    setNodes((nd) => [...nd, newNode]);
-  };
+
+    setNodes((nds) => nds.concat(newNode));
+  },
+  [setNodes]
+);
 
   const handleTextChange = (text) => { // text change
 
@@ -70,6 +88,8 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
           onConnect={connect}
           onNodeClick={nodeClick}
           nodeTypes={nodeTypes}
+          onDrop={onDrop}
+          onDragOver={onDragOver}
           fitView
           colorMode={toggle ? 'dark' : 'light'}
         >
@@ -89,7 +109,7 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
                 setType={setType} // disabled types
             />
             ) : (
-            <NodesPanel addMessageNode={addMessageNode} toggle={toggle} />
+            <NodesPanel toggle={toggle} type={type} />
         )}
       </div>
     </>

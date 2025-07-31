@@ -1,37 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
-const NavBar = () => {
-    const [toggle, setToggle] = useState(false);
-
-    useEffect(() => {
-        const html = document.documentElement;
-        if (toggle) {
-        html.classList.add('dark');
-        } else {
-        html.classList.remove('dark');
-        }
-    }, [toggle]);
+const NavBar = ({ toggle, setToggle }) => {
+    // const [toggle, setToggle] = useState(false);
 
   return (
     <>
-        <div className="flex justify-end items-center h-full px-14 gap-5">
+        <div  className={`flex justify-end items-center h-full px-14 gap-5 transition-colors duration-300 ${
+        toggle ? 'bg-gray-900 text-white' : 'bg-gray-200 text-black'
+        }`}>
             <button className="bg-transparent hover:bg-blue-300 text-blue-700 font-semibold hover:text-white border border-blue-700 hover:border-transparent rounded px-3 py-1 ease-in-out">
                 Save Changes
             </button>
             <button
-                onClick={() => setToggle(prev => !prev)}
-                className="bg-transparent hover:bg-blue-300 text-blue-700 font-semibold hover:text-white border border-blue-700 hover:border-transparent rounded px-3 py-1 ease-in-out"
+                onClick={() => setToggle(!toggle)}
+                className="bg-transparent hover:bg-blue-300 text-blue-700 font-semibold hover:text-white border border-blue-700 hover:border-transparent rounded px-3 py-1"
             >
-                {toggle? (
-                // 🌞 Sun icon for dark mode active (click to turn off)
-                <svg xmlns="http://www.w3.org/2000/svg" className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v2m6.364.636L16.95 7.05M21 12h-2M18.364 18.364L16.95 16.95M12 19v2M5.636 18.364L7.05 16.95M3 12h2M5.636 5.636L7.05 7.05M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                {toggle ? (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
                 </svg>
+
                 ) : (
-                // 🌙 Moon icon for light mode active (click to turn on dark)
-                <svg xmlns="http://www.w3.org/2000/svg" className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
                 </svg>
+
                 )}
             </button>
         </div>

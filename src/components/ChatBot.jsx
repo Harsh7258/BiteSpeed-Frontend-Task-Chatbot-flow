@@ -32,12 +32,13 @@ const ChatBot = () => {
     }
 
     const saved = nodes.map((n) => ({ id: n.id, label: n.data.label }));
-    console.log("Saved:", saved);
+    console.log("Saved:", saved); // logs saved message 
     toast.success("Flow saved!");
 
     setTimeout(() => {
       toast("refreshing board!")
-      window.location.reload(); // clear all nodes
+      setNodes([]);  // Clear all nodes
+      setEdges([]);  // Clear all edges
     }, 1500);
   };
 

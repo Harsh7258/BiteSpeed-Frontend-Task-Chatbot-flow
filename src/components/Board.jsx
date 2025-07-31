@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { ReactFlow, Background, Controls, addEdge } from '@xyflow/react';
+import { nodeGenerators } from '../utils/newNodeType';
+import toast from 'react-hot-toast';
 import NodesPanel from './Nodes';
 import SettingsPanel from './SettingPanel';
 import MessageNode from './MessageNode';
@@ -13,6 +15,7 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
 
   // node to be modified
   const [selectedNode, setSelectedNode] = useState(null);
+  const [type, setType] = useState('message');
   // const [alert, setAlert] = useState(null);
 
   const connect = useCallback((params) => {
@@ -20,16 +23,24 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
   )}, [setEdges]);
 
   const nodeClick = (event, node) => { // node is clicked for edit
+    // console.log(node);
     setSelectedNode(node);
   };
 
   const addMessageNode = () => { // add new message node 
+    if(!nodeGenerators[type]){
+      toast.error('No such type!!')
+      return;
+    }
+
+    const generator = nodeGenerators[type];
+    // console.log(generator);
+    const res = generator();
+
     const newNode = { // one node { node }
       id: `${+new Date()}`,
       type: 'message',
-      data: { 
-        label: 'text message' 
-      },
+      ...res,
       position: { x: Math.random() * 250, y: Math.random() * 250 
 
       },
@@ -38,6 +49,7 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
   };
 
   const handleTextChange = (text) => { // text change
+
     setNodes((nd) =>
       nd.map((node) =>
         node.id === selectedNode.id ? { ...node, data: { 
@@ -60,6 +72,7 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
           onNodeClick={nodeClick}
           nodeTypes={nodeTypes}
           fitView
+          colorMode={toggle ? 'dark' : 'light'}
         >
           <Background />
           <Controls />
@@ -73,6 +86,8 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
                 changeText={handleTextChange}
                 onBack={() => setSelectedNode(null)}
                 toggle={toggle}
+                type={type}
+                setType={setType}
             />
             ) : (
             <NodesPanel onAddMessage={addMessageNode} toggle={toggle} />

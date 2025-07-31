@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { supportTypes } from '../utils/newNodeType'
+import { Icons } from '../assets/icons/icons';
 
-const SettingsPanel = ({ node, changeText, onBack, toggle }) => {
+const SettingsPanel = ({ node, changeText, onBack, toggle, type, setType }) => {
   const [text, setText] = useState(node.data.label); // set to 'text message'
 
   useEffect(() => {
@@ -19,13 +21,23 @@ const SettingsPanel = ({ node, changeText, onBack, toggle }) => {
           onClick={onBack}
           className="text-md text-blue-700"
           >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-              </svg>
+              {Icons.arrow}
           </button>
 
-          <h2 className="font-semibold">Message</h2>
-          <div className="w-6" />
+          <h2 className='font-semibold'>Message</h2>
+          <div className={`rounded ${toggle ? 'bg-gray-900' : 'bg-white'}`}>
+            <select
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              className={`border p-1 rounded`}
+            >
+              {supportTypes.map((t) => (
+                <option key={t} value={t} disabled={t!=='message'} className='text-black'>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </div>
       </div>
       <div className='p-4'>
         <label className="block text-sm font-medium mb-2">Text</label>

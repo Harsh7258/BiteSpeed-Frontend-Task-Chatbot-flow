@@ -7,7 +7,7 @@ export const nodeGenerators = {
   }),
   input: () => ({
     type: 'input',
-    data: { label: 'Ask for input', placeholder: 'Enter name...' }
+    data: { label: 'input', placeholder: 'Enter name' }
   }),
   choice: () => ({
     type: 'choice',
@@ -15,7 +15,7 @@ export const nodeGenerators = {
   }),
   delay: () => ({
     type: 'delay',
-    data: { label: 'Wait for 3 seconds', duration: 3000 }
+    data: { label: 'Wait', duration: 3000 }
   }),
   api: () => ({
     type: 'api',

@@ -15,7 +15,7 @@ const SettingsPanel = ({ node, changeText, onBack, toggle, type, setType }) => {
   };
 
   return (
-    <div className={`h-screen ${toggle ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
+    <div className={`h-screen ${toggle ? 'panel-dark' : 'panel-light'}`}>
       <div className='flex items-center justify-between border-b-2 border-gray-200 p-2'>
           <button
           onClick={onBack}
@@ -25,7 +25,7 @@ const SettingsPanel = ({ node, changeText, onBack, toggle, type, setType }) => {
           </button>
 
           <h2 className='font-semibold'>Message</h2>
-          <div className={`rounded ${toggle ? 'bg-gray-900' : 'bg-white'}`}>
+          <div className={`rounded ${toggle ? 'panel-dark' : 'panel-ligth'}`}>
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}

@@ -9,14 +9,14 @@ import '@xyflow/react/dist/style.css';
 
 const nodeTypes = {
   message: MessageNode,
+  // customizable add more for node types
 }
 
 const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdgesChange }) => {
 
   // node to be modified
   const [selectedNode, setSelectedNode] = useState(null);
-  const [type, setType] = useState('message');
-  // const [alert, setAlert] = useState(null);
+  const [type, setType] = useState('message'); // default to message
 
   const connect = useCallback((params) => {
     setEdges((e) => addEdge(params, e) // validation for invalid edge or duplicate an existing one
@@ -29,7 +29,7 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
 
   const addMessageNode = () => { // add new message node 
     if(!nodeGenerators[type]){
-      toast.error('No such type!!')
+      toast.error('No such type!!') // type error
       return;
     }
 
@@ -39,8 +39,7 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
 
     const newNode = { // one node { node }
       id: `${+new Date()}`,
-      type: 'message',
-      ...res,
+      ...res, // node custom generator
       position: { x: Math.random() * 250, y: Math.random() * 250 
 
       },
@@ -86,11 +85,11 @@ const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdge
                 changeText={handleTextChange}
                 onBack={() => setSelectedNode(null)}
                 toggle={toggle}
-                type={type}
-                setType={setType}
+                type={type} // selected type diabled
+                setType={setType} // disabled types
             />
             ) : (
-            <NodesPanel onAddMessage={addMessageNode} toggle={toggle} />
+            <NodesPanel addMessageNode={addMessageNode} toggle={toggle} />
         )}
       </div>
     </>

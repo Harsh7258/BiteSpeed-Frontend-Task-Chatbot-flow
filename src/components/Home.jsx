@@ -10,7 +10,7 @@ const Home = () => {
       <h2 className="text-2xl font-semibold mb-4">Chat Bot Flow Builder</h2>
       <button
         onClick={() => navigate("/chatbot")}
-        className="bg-transparent hover:bg-blue-300 text-blue-700 font-semibold hover:text-white border border-blue-700 hover:border-transparent rounded px-6 py-2 ease-in-out"
+        className='btn-primary !px-6 !py-2'
       >
         Go to Chatbot
       </button>

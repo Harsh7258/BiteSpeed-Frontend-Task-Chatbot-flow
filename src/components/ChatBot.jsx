@@ -37,7 +37,7 @@ const ChatBot = () => {
 
     setTimeout(() => {
       toast("refreshing board!")
-      window.location.reload();
+      window.location.reload(); // clear all nodes
     }, 1500);
   };
 

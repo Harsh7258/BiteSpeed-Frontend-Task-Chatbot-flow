@@ -52,7 +52,7 @@ Hi! I'm K. Harsh Naidu, a developer and I believe I'm a strong fit for the Front
 This project was built with full dedication, clean code practices, and attention to extensibility and UX.
 I'm excited about the opportunity and look forward to hearing from you soon!
 
-- Email: [harshnaidu2u@gmail.com](harshnaidu2u@gmail.com)
+- Email: [mailto:harshnaidu2u@gmail.com](harshnaidu2u@gmail.com)
 - LinkedIn: [https://www.linkedin.com/in/k-harsh-naidu-20012928a/](https://www.linkedin.com/in/k-harsh-naidu-20012928a/)
 - Resume: [K. Harsh Naidu - Frontend Developer SDE 1](https://drive.google.com/file/d/1sg_DBde1yAWSaNpII5cuma30rBKJFfPv/view?usp=sharing)
 

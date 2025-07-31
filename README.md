@@ -41,10 +41,10 @@ Visit http://localhost:5173 in your browser.
 
 ### Demo Screenshots
 
-Screenshot 1 - ![Home view](/public//images/home.png)
-Screenshot 2 - ![Chatbot borad](/public/images/chatbot.png)
-Screenshot 3 - ![Settings message Panel](/public/images/message.png)
-Screenshot 4 - ![Nodes save error alert](/public/images/error.png)
+Screenshot 1 - Home view ![](/public//images/home.png)
+Screenshot 2 - Chatbot borad ![](/public/images/chatbot.png)
+Screenshot 3 - Settings message Panel ![](/public/images/message.png)
+Screenshot 4 - Nodes save error alert ![](/public/images/error.png)
 
 ### This my project for BiteSpeed frontend assignment
 
@@ -52,7 +52,7 @@ Hi! I'm K. Harsh Naidu, a developer and I believe I'm a strong fit for the Front
 This project was built with full dedication, clean code practices, and attention to extensibility and UX.
 I'm excited about the opportunity and look forward to hearing from you soon!
 
-- Email: harshnaidu@example.com
+- Email: [harshnaidu2u@gmail.com](harshnaidu2u@gmail.com)
 - LinkedIn: [https://www.linkedin.com/in/k-harsh-naidu-20012928a/](https://www.linkedin.com/in/k-harsh-naidu-20012928a/)
 - Resume: [K. Harsh Naidu - Frontend Developer SDE 1](https://drive.google.com/file/d/1sg_DBde1yAWSaNpII5cuma30rBKJFfPv/view?usp=sharing)
 

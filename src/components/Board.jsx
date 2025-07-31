@@ -1,21 +1,15 @@
 import React, { useState, useCallback } from 'react';
-import { ReactFlow, Background, Controls, useNodesState, useEdgesState, addEdge } from '@xyflow/react';
+import { ReactFlow, Background, Controls, addEdge } from '@xyflow/react';
 import NodesPanel from './Nodes';
 import SettingsPanel from './SettingPanel';
 import MessageNode from './MessageNode';
 import '@xyflow/react/dist/style.css';
 
-const initialNodes = []; // empty flexible
-const initialEdges = []; // empty flexible
-
 const nodeTypes = {
   message: MessageNode,
 }
 
-const Board = ({ toggle  }) => {
-  // useState: of reactflow initiaNodes, initialEdges to manage nodes, egdes
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+const Board = ({ toggle, nodes, setNodes, edges, setEdges, onNodesChange, onEdgesChange }) => {
 
   // node to be modified
   const [selectedNode, setSelectedNode] = useState(null);
@@ -72,12 +66,13 @@ const Board = ({ toggle  }) => {
         </ReactFlow>
       </div>
 
-      <div className='w-[25%] h-screen'>
+      <div className='w-[25%] h-screen border-l-2 border-gray-200'>
         {selectedNode ? (
             <SettingsPanel
                 node={selectedNode}
                 changeText={handleTextChange}
                 onBack={() => setSelectedNode(null)}
+                toggle={toggle}
             />
             ) : (
             <NodesPanel onAddMessage={addMessageNode} toggle={toggle} />

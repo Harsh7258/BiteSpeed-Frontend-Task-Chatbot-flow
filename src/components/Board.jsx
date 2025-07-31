@@ -2,28 +2,35 @@ import React, { useState, useCallback } from 'react';
 import { ReactFlow, Background, Controls, useNodesState, useEdgesState, addEdge } from '@xyflow/react';
 import NodesPanel from './Nodes';
 import SettingsPanel from './SettingPanel';
+import MessageNode from './MessageNode';
 import '@xyflow/react/dist/style.css';
 
-const initialNodes = []; 
-const initialEdges = []; 
+const initialNodes = []; // empty flexible
+const initialEdges = []; // empty flexible
 
-const Board = ({ toggle }) => {
-  
+const nodeTypes = {
+  message: MessageNode,
+}
+
+const Board = ({ toggle  }) => {
+  // useState: of reactflow initiaNodes, initialEdges to manage nodes, egdes
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
+  // node to be modified
   const [selectedNode, setSelectedNode] = useState(null);
+  // const [alert, setAlert] = useState(null);
 
   const connect = useCallback((params) => {
-    setEdges((e) => addEdge(params, e) 
+    setEdges((e) => addEdge(params, e) // validation for invalid edge or duplicate an existing one
   )}, [setEdges]);
 
-  const nodeClick = (event, node) => { 
+  const nodeClick = (event, node) => { // node is clicked for edit
     setSelectedNode(node);
   };
 
-  const addMessageNode = () => {  
-    const newNode = { 
+  const addMessageNode = () => { // add new message node 
+    const newNode = { // one node { node }
       id: `${+new Date()}`,
       type: 'message',
       data: { 
@@ -36,12 +43,12 @@ const Board = ({ toggle }) => {
     setNodes((nd) => [...nd, newNode]);
   };
 
-  const handleTextChange = (text) => { 
+  const handleTextChange = (text) => { // text change
     setNodes((nd) =>
       nd.map((node) =>
         node.id === selectedNode.id ? { ...node, data: { 
           ...node.data, 
-          label: text 
+          label: text // update only text
         } } : node
       )
     );
@@ -57,6 +64,7 @@ const Board = ({ toggle }) => {
           onEdgesChange={onEdgesChange}
           onConnect={connect}
           onNodeClick={nodeClick}
+          nodeTypes={nodeTypes}
           fitView
         >
           <Background />

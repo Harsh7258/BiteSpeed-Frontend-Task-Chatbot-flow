@@ -54,7 +54,7 @@ I'm excited about the opportunity and look forward to hearing from you soon!
 
 - Email: [mailto:harshnaidu2u@gmail.com](harshnaidu2u@gmail.com)
 - LinkedIn: [https://www.linkedin.com/in/k-harsh-naidu-20012928a/](https://www.linkedin.com/in/k-harsh-naidu-20012928a/)
-- Resume: [K. Harsh Naidu - Frontend Developer SDE 1](https://drive.google.com/file/d/1sg_DBde1yAWSaNpII5cuma30rBKJFfPv/view?usp=sharing)
+- Resume: [K. Harsh Naidu - Full Stack Developer SDE 1](https://drive.google.com/file/d/1SvfVxnDQAhF5fvXWrgE1lVpPDSIBWiip/view?usp=sharing)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
